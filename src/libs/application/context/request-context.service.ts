@@ -1,5 +1,5 @@
 import { RequestContext } from "nestjs-request-context"
-import { AppRequestContext } from "./app-request-context"
+import AppRequestContext from "./app-request-context"
 
 export class RequestContextService {
     static getContext() : AppRequestContext{

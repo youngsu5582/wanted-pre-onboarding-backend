@@ -5,15 +5,15 @@ import { CreateUserRequestDto } from "../../dtos/create-user-request.dto";
 import { CreateUserCommand } from "./create-user-command";
 
 
-@Controller()
+@Controller('user')
 export class CreateUserController {
     constructor(private readonly commandBus : CommandBus){
 
     }
-    @TypedRoute.Post()
+    @TypedRoute.Post('create')
     async create(@TypedBody() createUserRequestDto : CreateUserRequestDto){
         const command = new CreateUserCommand(createUserRequestDto);
-        return;
-
+        const result = await this.commandBus.execute(command);
+        return result;
     }
 }
