@@ -1,10 +1,9 @@
-import { LoginUserRequestDto } from "../dtos/login-user-request.dto";
-import { UserEntity } from "../dtos/user-entity.dto";
+import { LoginUserProps } from "../domain/user.types";
 
 
 
 export default interface UserRepositoryPort {
-    createUser: (user:UserEntity) => Promise<boolean>;
-    login: (dto:LoginUserRequestDto)=>void;
+    createUser: (user:) => Promise<boolean>;
+    login: (props:LoginUserProps)=>void;
     
 }

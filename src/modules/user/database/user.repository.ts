@@ -1,7 +1,7 @@
 import { BasePrismaRepository } from "@src/libs/database/base-prisma-repository";
 import UserRepositoryPort from "./user.repository.port";
-import { LoginUserRequestDto } from "../dtos/login-user-request.dto";
 import { User } from "@prisma/client";
+import { LoginUserProps } from "../domain/user.types";
 
 
 
@@ -16,7 +16,7 @@ export class UserRepository extends BasePrismaRepository implements UserReposito
         else
             return false;
     }
-    public async login (dto: LoginUserRequestDto){
+    public async login (props: LoginUserProps){
         return
     }
 
