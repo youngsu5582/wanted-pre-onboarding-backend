@@ -5,6 +5,8 @@ import { USER_REPOSITORY } from "../../user.di-token";
 import UserRepositoryPort from "../../database/user.repository.port";
 import { User } from "@prisma/client";
 import {v4} from 'uuid';
+import { UserEntity } from "../../dtos/user-entity.dto";
+
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler{
     constructor(
@@ -13,15 +15,15 @@ export class CreateUserCommandHandler implements ICommandHandler{
     ){}
     async execute(command: CreateUserCommand){
         try{
-            const user : User = {
+            const user : UserEntity = {
                 email:command.email,
                 password:command.password,
-                id:v4()
+                id:v4(),
             }
-            const result = this.userRepository.createUser(user);
-            return true;
-        }
-        catch(err){
+            const result = await this.userRepository.createUser(user);
+            return true;        
+            }
+        catch(err){ 
             return false;
         }
     }

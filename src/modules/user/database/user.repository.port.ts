@@ -1,10 +1,10 @@
-import { User } from "@prisma/client";
 import { LoginUserRequestDto } from "../dtos/login-user-request.dto";
+import { UserEntity } from "../dtos/user-entity.dto";
 
 
 
 export default interface UserRepositoryPort {
-    createUser: (user:User) => void;
+    createUser: (user:UserEntity) => Promise<boolean>;
     login: (dto:LoginUserRequestDto)=>void;
     
 }

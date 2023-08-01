@@ -5,11 +5,15 @@ type CommandMetadata = {
     readonly correlationId : string;
 
     readonly causationId ?: string;
-
+    
     readonly userId ?: string;
 
     readonly timestamp : number;
+
+
 }
+
+//
 
 export class Command {
     readonly id : string;
@@ -26,4 +30,5 @@ export class Command {
     }
 }
 
-export type CommandProps<T> = Omit<T,'id'|'metadata'> & Partial<Command>;   
+export type CommandProps<T> = Omit<T,'id'|'metadata'> & Partial<Command>;
+
