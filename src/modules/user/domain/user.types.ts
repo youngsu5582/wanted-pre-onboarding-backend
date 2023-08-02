@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
 
-export type CreateUserProps = Pick<User,"id"|"email"|"password">;       
+export type CreateUserProps = Pick<User,"email"|"password">;       
 export type LoginUserProps = Pick<User,"email"|"password">;
-export type UserProps = Pick<User,"email"|"password"|'id'>;
+export type UserProps = Pick<User,"email"|"password">;

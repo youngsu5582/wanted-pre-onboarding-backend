@@ -1,5 +1,6 @@
+import { randomId } from "@src/utils/random-id";
 import { RequestContextService } from "../application/context/request-context.service";
-import {v4} from 'uuid';
+
 
 type CommandMetadata = {
     readonly correlationId : string;
@@ -20,7 +21,7 @@ export class Command {
     readonly metadata : CommandMetadata;
     constructor(props:CommandProps<unknown>){
         const ctx = RequestContextService.getContext();
-        this.id = props.id || v4();
+        this.id = props.id || randomId();
         this.metadata = {
             correlationId : props?.metadata?.correlationId || ctx.requestId,
             timestamp : props.metadata?.timestamp || Date.now(),

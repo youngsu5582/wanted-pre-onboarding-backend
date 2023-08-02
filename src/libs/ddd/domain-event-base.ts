@@ -1,5 +1,6 @@
 
-import {v4} from 'uuid';
+
+import { randomId } from '@src/utils/random-id';
 import { RequestContextService } from '../application/context/request-context.service';
 
 
@@ -21,7 +22,7 @@ export abstract class DomainEvent {
     public readonly metadata : DomainEventMetaData;
 
     constructor(props: DomainEventProps<unknown>){
-        this.id = v4();
+        this.id = randomId();
         this.aggregatedId = props.aggregatedId;
         this.metadata  = {
             correlationId : props.metadata?.correlationId || RequestContextService.getRequestId(),

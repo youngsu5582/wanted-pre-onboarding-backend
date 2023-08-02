@@ -53,6 +53,10 @@
       return this._updatedAt;
     }
   
+    getProps() : EntityProps {
+        return this.props;
+    }
+
     static isEntity(entity: unknown): entity is Entity<unknown> {
       return entity instanceof Entity;
     }
