@@ -6,7 +6,7 @@ import { LoginUserQuery } from "./login-user-query";
 import { UserEntity } from "../../domain/user.entity";
 import { UserNotExistsError, UserPasswordNotCorrectError } from "../../domain/user.errors";
 import { comparePassword } from "@src/utils/compare-password";
-import { Err } from "oxide.ts";
+import { Err, Ok } from "oxide.ts";
 
 @QueryHandler(LoginUserQuery)
 export class LoginUserQueryHandler implements IQueryHandler{
@@ -14,12 +14,12 @@ export class LoginUserQueryHandler implements IQueryHandler{
         private readonly userRepository : UserRepository){}
     async execute(query: LoginUserQuery): Promise<any> {
         const record = await this.userRepository.findByEmail(query.email);
-        console.log(record);
         if(!record) return Err(new UserNotExistsError());
         if(!comparePassword(query.password,record.password)) return Err(new UserPasswordNotCorrectError());
         try{
-            
-            return  
+            const token = "temp";
+            this.userRepository.saveRefreshToken(record.email,token);
+            return Ok(token);
         }
         catch(err){
             

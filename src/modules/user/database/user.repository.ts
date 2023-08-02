@@ -1,8 +1,6 @@
 import { BasePrismaRepository } from "@src/libs/database/base-prisma-repository";
 import UserRepositoryPort from "./user.repository.port";
-import { LoginUserProps } from "../domain/user.types";
 import { UserEntity } from "../domain/user.entity";
-import { User } from "@prisma/client";
 
 
 
@@ -20,6 +18,10 @@ export class UserRepository extends BasePrismaRepository implements UserReposito
     }
     public async findByEmail(email:string) {
         return await this.user.findUnique({where:{email},select:{password:true,email:true}});
+    }
+    public async saveRefreshToken(email:string,refreshToken:string){
+        await this.user.update({where:{email},data:{refreshToken},select:null});
+        return;
     }
 
 }
