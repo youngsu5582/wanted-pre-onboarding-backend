@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0.33-debian
+    platform: linux/x86_64
+    container_name: application-db
+    restart : always
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+    ports:
+      - 33060:3306
+    env_file:
+      - ./.env
+    volumes:
+      - ./db/mysql/data:/var/lib/mysql
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: application-backend
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    env_file:
+      - ./.env

@@ -2,7 +2,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { EventEmitter } from 'events';
 
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './src/app.module';
 import { Logger } from '@nestjs/common';
 
 export class NestBootStrapApplication extends EventEmitter {
