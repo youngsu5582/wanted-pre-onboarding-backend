@@ -19,4 +19,12 @@ export class UserEntity extends AggregateRoot<UserProps>{
         user.addEvent(new UserCreatedDomainEvent({aggregatedId:id,email:props.email}));
         return user;
     }
+    static validate(query : LoginUserQuery,user : resultUserWithNull){
+        if(user===null)
+            return false;
+        const isMatched = comparePassword(query.password,user.password);
+        if(isMatched)
+            return false;
+        return true;
+    }
 }

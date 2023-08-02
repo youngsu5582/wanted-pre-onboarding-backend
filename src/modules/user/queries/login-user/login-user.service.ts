@@ -11,7 +11,7 @@ export class LoginUserQueryHandler implements IQueryHandler{
         private readonly userRepository : UserRepository){}
     async execute(query: LoginUserQuery): Promise<any> {
         const user = await this.userRepository.user.findUnique({where:{email:query.email},select:{password:true,email:true}});
-        
+        UserEntity.validate(query,user);
         return 
     }
 
