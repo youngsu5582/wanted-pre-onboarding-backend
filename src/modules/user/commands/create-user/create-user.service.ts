@@ -3,10 +3,10 @@ import { CreateUserCommand } from "./create-user-command";
 import { Inject } from "@nestjs/common";
 import { USER_REPOSITORY } from "../../user.di-token";
 import UserRepositoryPort from "../../database/user.repository.port";
-import { randomId } from "@src/utils/random-id";
 import { UserEntity } from "../../domain/user.entity";
-import { User } from "@prisma/client";
-import { Ok } from "oxide.ts";
+import { Err, Ok } from "oxide.ts";
+import { UserAlreadyExistsError } from "../../domain/user.errors";
+import { PrismaKnownRequestCode } from "@src/libs/database/base-prisma-code";
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler{
@@ -20,8 +20,14 @@ export class CreateUserCommandHandler implements ICommandHandler{
             await this.userRepository.createUser(user);
             return Ok(user.id);
             }
-        catch(err){
-            return false;
+        catch(error : any){
+            /**
+             * 08.02 현재는 Prisma 에 의존된 코드로 매우 지양되어야 하는 코드임 . 차후 수정 예정
+             */
+            if(error.code ===PrismaKnownRequestCode){
+                return Err(new UserAlreadyExistsError(error))
+            }
+            throw error;
         }
     }
 }
