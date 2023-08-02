@@ -4,15 +4,26 @@ import { USER_REPOSITORY } from "../../user.di-token";
 import { UserRepository } from "../../database/user.repository";
 import { LoginUserQuery } from "./login-user-query";
 import { UserEntity } from "../../domain/user.entity";
+import { UserNotExistsError, UserPasswordNotCorrectError } from "../../domain/user.errors";
+import { comparePassword } from "@src/utils/compare-password";
+import { Err } from "oxide.ts";
 
 @QueryHandler(LoginUserQuery)
 export class LoginUserQueryHandler implements IQueryHandler{
     constructor(@Inject(USER_REPOSITORY)
         private readonly userRepository : UserRepository){}
     async execute(query: LoginUserQuery): Promise<any> {
-        const user = await this.userRepository.user.findUnique({where:{email:query.email},select:{password:true,email:true}});
-        UserEntity.validate(query,user);
-        return 
+        const record = await this.userRepository.findByEmail(query.email);
+        console.log(record);
+        if(!record) return Err(new UserNotExistsError());
+        if(!comparePassword(query.password,record.password)) return Err(new UserPasswordNotCorrectError());
+        try{
+            
+            return  
+        }
+        catch(err){
+            
+        }
     }
 
 }

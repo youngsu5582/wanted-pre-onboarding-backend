@@ -7,6 +7,7 @@ import { UserEntity } from "../../domain/user.entity";
 import { Err, Ok } from "oxide.ts";
 import { UserAlreadyExistsError } from "../../domain/user.errors";
 import { PrismaKnownRequestCode } from "@src/libs/database/base-prisma-code";
+import { hashPassword } from "@src/utils/hash-password";
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler{
@@ -15,7 +16,7 @@ export class CreateUserCommandHandler implements ICommandHandler{
             private readonly userRepository : UserRepositoryPort
     ){}
     async execute(command: CreateUserCommand){
-        const user = UserEntity.create({email:command.email,password:command.password}); 
+        const user = UserEntity.create({email:command.email,password:hashPassword(command.password)}); 
         try{
             await this.userRepository.createUser(user);
             return Ok(user.id);

@@ -13,4 +13,5 @@ export class RequestContextService {
         const ctx : AppRequestContext = RequestContext.currentContext.req;
         ctx.requestId = id;
     }
+    static 
 }

@@ -18,8 +18,8 @@ export class UserRepository extends BasePrismaRepository implements UserReposito
         else
             return false;
     }
-    public async login (props: LoginUserProps){
-        return
+    public async findByEmail(email:string) {
+        return await this.user.findUnique({where:{email},select:{password:true,email:true}});
     }
 
 }

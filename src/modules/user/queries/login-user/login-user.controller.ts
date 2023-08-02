@@ -10,5 +10,8 @@ export class LoginUserController {
     @TypedRoute.Post('login')
     async login(@TypedBody() loginUserProps : LoginUserProps){
         const query =  new LoginUserQuery(loginUserProps);
+        const result = this.queryBus.execute(query);
+        console.log(result);
+        return result;
     }
 }
