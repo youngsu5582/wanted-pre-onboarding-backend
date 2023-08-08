@@ -7,6 +7,7 @@ import { UserEntity } from "../../domain/user.entity";
 import { UserNotExistsError, UserPasswordNotCorrectError } from "../../domain/user.errors";
 import { comparePassword } from "@src/utils/compare-password";
 import { Err, Ok } from "oxide.ts";
+import { DBSelectError } from "@src/modules/common.errors";
 
 @QueryHandler(LoginUserQuery)
 export class LoginUserQueryHandler implements IQueryHandler{
@@ -21,8 +22,8 @@ export class LoginUserQueryHandler implements IQueryHandler{
             this.userRepository.saveRefreshToken(record.email,token);
             return Ok(token);
         }
-        catch(err){
-            
+        catch(error:any){
+            throw Err(new DBSelectError(error))
         }
     }
 

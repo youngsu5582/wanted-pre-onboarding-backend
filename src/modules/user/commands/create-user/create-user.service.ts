@@ -8,6 +8,7 @@ import { Err, Ok } from "oxide.ts";
 import { UserAlreadyExistsError } from "../../domain/user.errors";
 import { PrismaKnownRequestCode } from "@src/libs/database/base-prisma-code";
 import { hashPassword } from "@src/utils/hash-password";
+import { DBInsertError } from "@src/modules/common.errors";
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserCommandHandler implements ICommandHandler{
@@ -28,7 +29,7 @@ export class CreateUserCommandHandler implements ICommandHandler{
             if(error.code ===PrismaKnownRequestCode){
                 return Err(new UserAlreadyExistsError(error))
             }
-            throw error;
+            throw Err(new DBInsertError(error));
         }
     }
 }
