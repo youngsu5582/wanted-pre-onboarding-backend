@@ -1,7 +1,5 @@
-import { RequestContext } from "nestjs-request-context";
-
-
+import { RequestContext } from 'nestjs-request-context';
 
 export default class AppRequestContext extends RequestContext {
-    requestId : string;
+  requestId: string;
 }

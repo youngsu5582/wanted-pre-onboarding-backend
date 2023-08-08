@@ -18,9 +18,7 @@ export abstract class AggregateRoot<EntityProps> extends Entity<EntityProps> {
     this._domainEvents = [];
   }
 
-  public async publishEvents(
-    eventEmitter: EventEmitter2,
-  ): Promise<void> {
+  public async publishEvents(eventEmitter: EventEmitter2): Promise<void> {
     await Promise.all(
       this.domainEvents.map(async (event) => {
         return eventEmitter.emitAsync(event.constructor.name, event);
