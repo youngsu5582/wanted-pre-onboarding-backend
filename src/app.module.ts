@@ -4,7 +4,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ContextInterceptor } from './libs/application/context/context.interceptor';
 import { ExceptionInterceptor } from './libs/application/interceptors/exception.interceptor';
 import { ConfigModule } from '@nestjs/config';
-import { ProviderModule } from './providers/provider.module';
+import { UserMddule } from './modules/user/user.module';
+import { PostModule } from './modules/post/post.module';
 
 const interceptors: Provider[] = [
   {
@@ -19,7 +20,8 @@ const interceptors: Provider[] = [
 @Module({
   imports: [
     RequestContextModule,
-    ProviderModule,
+    UserMddule,
+    PostModule,
     ConfigModule.forRoot({ isGlobal: true, cache: true }),
   ],
   controllers: [],

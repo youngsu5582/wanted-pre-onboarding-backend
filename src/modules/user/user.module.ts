@@ -6,6 +6,9 @@ import { USER_REPOSITORY } from './user.di-token';
 import { CqrsModule } from '@nestjs/cqrs';
 import { LoginUserController } from './queries/login-user/login-user.controller';
 import { LoginUserQueryHandler } from './queries/login-user/login-user.service';
+import { ProviderModule } from '@src/providers/provider.module';
+import { JwtProvider } from '@src/providers/jwt.provider';
+import { JwtService } from '@nestjs/jwt';
 
 const httpControllers = [CreateUserController, LoginUserController];
 const commandHandlers: Provider[] = [CreateUserCommandHandler];
@@ -14,8 +17,14 @@ const repositories: Provider[] = [
   { provide: USER_REPOSITORY, useClass: UserRepository },
 ];
 @Module({
-  imports: [CqrsModule],
+  imports: [CqrsModule, ProviderModule],
   controllers: [...httpControllers],
-  providers: [...repositories, ...commandHandlers, ...queryHandlers],
+  providers: [
+    ...repositories,
+    ...commandHandlers,
+    ...queryHandlers,
+    JwtProvider,
+    JwtService,
+  ],
 })
 export class UserMddule {}
