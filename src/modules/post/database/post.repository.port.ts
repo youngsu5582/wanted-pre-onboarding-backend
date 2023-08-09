@@ -1,6 +1,6 @@
 import { PaginatedQueryParams } from '@src/libs/ddd/query-base';
 import { PostEntity } from '../domain/post.entity';
-import { ReadPostProps } from '../domain/post.types';
+import { PostProps, ReadPostProps } from '../domain/post.types';
 import { Paginated } from '@src/libs/ddd/repository.port';
 
 export default interface PostRepositoryPort {
@@ -8,4 +8,5 @@ export default interface PostRepositoryPort {
   readPosts: (
     params?: PaginatedQueryParams,
   ) => Promise<Paginated<ReadPostProps>>;
+  readPost: (postId: string) => Promise<PostProps | null>;
 }

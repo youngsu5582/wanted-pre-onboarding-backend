@@ -33,4 +33,10 @@ export class PostRepository
       page: params.page,
     });
   }
+  async readPost(postId: string) {
+    return await this.post.findUnique({
+      select: { title: true, content: true, userId: true },
+      where: { id: postId },
+    });
+  }
 }

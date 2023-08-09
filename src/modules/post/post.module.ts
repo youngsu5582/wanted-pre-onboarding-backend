@@ -5,12 +5,18 @@ import { CreatePostController } from './commands/create-post/create-post.control
 import { CreatePostCommandHandler } from './commands/create-post/create-post.service';
 import { POST_REPOSITORY } from './post.di-token';
 import { PostRepository } from './database/post.repository';
-import { ReadPostController } from './queries/read-posts/read-posts.controller';
+import { ReadPostsController } from './queries/read-posts/read-posts.controller';
 import { ReadPostsQueryHandler } from './queries/read-posts/read-posts.service';
+import { ReadPostQueryHandler } from './queries/read-post/read-post.service';
+import { ReadPostController } from './queries/read-post/read-post.controller';
 
-const httpControllers = [CreatePostController, ReadPostController];
+const httpControllers = [
+  CreatePostController,
+  ReadPostsController,
+  ReadPostController,
+];
 const commandHandlers: Provider[] = [CreatePostCommandHandler];
-const queryHandlers: Provider[] = [ReadPostsQueryHandler];
+const queryHandlers: Provider[] = [ReadPostsQueryHandler, ReadPostQueryHandler];
 const repositories: Provider[] = [
   { provide: POST_REPOSITORY, useClass: PostRepository },
 ];

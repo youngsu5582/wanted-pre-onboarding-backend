@@ -8,7 +8,7 @@ import { Paginated } from '@src/libs/ddd/repository.port';
 import { ReadPostProps } from '../../domain/post.types';
 
 @Controller('post')
-export class ReadPostController {
+export class ReadPostsController {
   constructor(private readonly queryBus: QueryBus) {}
   @TypedRoute.Get('')
   async read(@TypedQuery() queryParams: PostPaginationDto) {
