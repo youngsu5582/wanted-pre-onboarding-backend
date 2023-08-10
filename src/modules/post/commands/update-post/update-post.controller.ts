@@ -12,6 +12,17 @@ import { PostNotMatchedUser } from '../../post.errors';
 @Controller('post')
 export class UpdatePostController {
   constructor(private readonly commandBus: CommandBus) {}
+  /**
+   * 게시글 수정 기능
+   *
+   * Body 를 통해 받은 updatePostProps( title , content ) 를 통해 Post를 수정한다.
+   *
+   * @tag post
+   * @param updatePostProps
+   * @param userId
+   * @param postId
+   * @returns
+   */
   @UseGuards(AccessTokenGuard)
   @TypedRoute.Put('/:postId')
   async update(

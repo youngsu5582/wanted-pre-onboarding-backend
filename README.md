@@ -26,3 +26,5 @@ https://github.com/lordmyshepherd-edu/wanted-pre-onboardung-backend-selection-as
 - [ x ] 특정 게시글 조회
 - [ x ] 특정 게시글 수정
 - [ x ] 특정 게시글 삭제
+
+=> 2023.08.10 프로토타입 완성

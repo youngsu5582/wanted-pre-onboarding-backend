@@ -17,7 +17,9 @@
   "paths": {
     "/post/create": {
       "post": {
-        "tags": [],
+        "tags": [
+          "post"
+        ],
         "parameters": [],
         "requestBody": {
           "description": "",
@@ -44,14 +46,49 @@
             "x-nestia-encrypted": false
           }
         },
+        "summary": "게시글 작성 기능\n\nBody 를 통해 받은 createPostProps( title , content )를 통해 Post를 만든다",
+        "description": "게시글 작성 기능\n\nBody 를 통해 받은 createPostProps( title , content )를 통해 Post를 만든다.\n\n@tag post\n@param createPostProps\n@param userId\n@returns",
         "x-nestia-namespace": "post.create.create",
-        "x-nestia-jsDocTags": [],
+        "x-nestia-jsDocTags": [
+          {
+            "name": "tag",
+            "text": [
+              {
+                "text": "post",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "createPostProps",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "userId",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns"
+          }
+        ],
         "x-nestia-method": "POST"
       }
     },
     "/post/{postId}": {
       "delete": {
-        "tags": [],
+        "tags": [
+          "post"
+        ],
         "parameters": [
           {
             "name": "postId",
@@ -76,12 +113,47 @@
             "x-nestia-encrypted": false
           }
         },
+        "summary": "게시글 삭제 기능\n\npostId 를 통해 특정 게시물을 삭제한다",
+        "description": "게시글 삭제 기능\n\npostId 를 통해 특정 게시물을 삭제한다.\n\n@tag post\n@param userId\n@param postId\n@returns",
         "x-nestia-namespace": "post.update",
-        "x-nestia-jsDocTags": [],
+        "x-nestia-jsDocTags": [
+          {
+            "name": "tag",
+            "text": [
+              {
+                "text": "post",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "userId",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "postId",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns"
+          }
+        ],
         "x-nestia-method": "DELETE"
       },
       "put": {
-        "tags": [],
+        "tags": [
+          "post"
+        ],
         "parameters": [
           {
             "name": "postId",
@@ -118,12 +190,56 @@
             "x-nestia-encrypted": false
           }
         },
+        "summary": "게시글 수정 기능\n\nBody 를 통해 받은 updatePostProps( title , content ) 를 통해 Post를 수정한다",
+        "description": "게시글 수정 기능\n\nBody 를 통해 받은 updatePostProps( title , content ) 를 통해 Post를 수정한다.\n\n@tag post\n@param updatePostProps\n@param userId\n@param postId\n@returns",
         "x-nestia-namespace": "post.update",
-        "x-nestia-jsDocTags": [],
+        "x-nestia-jsDocTags": [
+          {
+            "name": "tag",
+            "text": [
+              {
+                "text": "post",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "updatePostProps",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "userId",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "postId",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns"
+          }
+        ],
         "x-nestia-method": "PUT"
       },
       "get": {
-        "tags": [],
+        "tags": [
+          "post"
+        ],
         "parameters": [
           {
             "name": "postId",
@@ -148,22 +264,114 @@
             "x-nestia-encrypted": false
           }
         },
+        "summary": "특정 게시글 조회 기능\n\nParam 을 통해 받은 postId 를 통해 , 특정 Post 를 조회한다",
+        "description": "특정 게시글 조회 기능\n\nParam 을 통해 받은 postId 를 통해 , 특정 Post 를 조회한다.\n\n@tag post\n@param postId\n@returns",
         "x-nestia-namespace": "post.read",
-        "x-nestia-jsDocTags": [],
+        "x-nestia-jsDocTags": [
+          {
+            "name": "tag",
+            "text": [
+              {
+                "text": "post",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "postId",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns"
+          }
+        ],
         "x-nestia-method": "GET"
       }
     },
     "/post": {
       "get": {
-        "tags": [],
+        "tags": [
+          "post"
+        ],
         "parameters": [
           {
+            "name": "page",
             "in": "query",
-            "description": "",
             "schema": {
-              "$ref": "#/components/schemas/PostPaginationDto"
+              "description": "@minimum 0",
+              "x-typia-metaTags": [
+                {
+                  "kind": "minimum",
+                  "value": 0
+                }
+              ],
+              "x-typia-jsDocTags": [
+                {
+                  "name": "minimum",
+                  "text": [
+                    {
+                      "text": "0",
+                      "kind": "text"
+                    }
+                  ]
+                }
+              ],
+              "x-typia-required": false,
+              "x-typia-optional": true,
+              "type": "number",
+              "minimum": 0
             },
-            "required": true
+            "required": false,
+            "description": "@minimum 0"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "description": "@minimum 0",
+              "x-typia-metaTags": [
+                {
+                  "kind": "minimum",
+                  "value": 0
+                }
+              ],
+              "x-typia-jsDocTags": [
+                {
+                  "name": "minimum",
+                  "text": [
+                    {
+                      "text": "0",
+                      "kind": "text"
+                    }
+                  ]
+                }
+              ],
+              "x-typia-required": false,
+              "x-typia-optional": true,
+              "type": "number",
+              "minimum": 0
+            },
+            "required": false,
+            "description": "@minimum 0"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "x-typia-required": false,
+              "x-typia-optional": true,
+              "type": "string",
+              "enum": [
+                "desc",
+                "asc"
+              ]
+            },
+            "required": false
           }
         ],
         "responses": {
@@ -179,14 +387,40 @@
             "x-nestia-encrypted": false
           }
         },
-        "x-nestia-namespace": "post.read",
-        "x-nestia-jsDocTags": [],
+        "summary": "게시글 목록 조회 기능\n\nQuery 를 통해 받은 Pagination Option 을 통해 , 조건에 맞는 Post id[] 를 받는다",
+        "description": "게시글 목록 조회 기능\n\nQuery 를 통해 받은 Pagination Option 을 통해 , 조건에 맞는 Post id[] 를 받는다.\n\n@tag post\n@param queryParams\n@returns",
+        "x-nestia-namespace": "post.reads",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "tag",
+            "text": [
+              {
+                "text": "post",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "queryParams",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns"
+          }
+        ],
         "x-nestia-method": "GET"
       }
     },
-    "/user/create": {
+    "/user/register": {
       "post": {
-        "tags": [],
+        "tags": [
+          "user"
+        ],
         "parameters": [],
         "requestBody": {
           "description": "",
@@ -213,14 +447,40 @@
             "x-nestia-encrypted": false
           }
         },
-        "x-nestia-namespace": "user.create.create",
-        "x-nestia-jsDocTags": [],
+        "summary": "사용자 회원가입 기능\n\nBody 를 통해 받은 createUserProps( email , password )를 통해 User 를 만든다",
+        "description": "사용자 회원가입 기능\n\nBody 를 통해 받은 createUserProps( email , password )를 통해 User 를 만든다.\n\n@tag user\n@param createUserProps\n@returns",
+        "x-nestia-namespace": "user.register.create",
+        "x-nestia-jsDocTags": [
+          {
+            "name": "tag",
+            "text": [
+              {
+                "text": "user",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "createUserProps",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns"
+          }
+        ],
         "x-nestia-method": "POST"
       }
     },
     "/user/login": {
       "post": {
-        "tags": [],
+        "tags": [
+          "user"
+        ],
         "parameters": [],
         "requestBody": {
           "description": "",
@@ -247,8 +507,32 @@
             "x-nestia-encrypted": false
           }
         },
+        "summary": "사용자 로그인 기능\n\nBody 를 통해 받은 loginUserProps( email , password )를 통해 User 를 검증후 , Token 을 반환한다",
+        "description": "사용자 로그인 기능\n\nBody 를 통해 받은 loginUserProps( email , password )를 통해 User 를 검증후 , Token 을 반환한다.\n\n@tag user\n@param loginUserProps\n@returns",
         "x-nestia-namespace": "user.login.login",
-        "x-nestia-jsDocTags": [],
+        "x-nestia-jsDocTags": [
+          {
+            "name": "tag",
+            "text": [
+              {
+                "text": "user",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "param",
+            "text": [
+              {
+                "text": "loginUserProps",
+                "kind": "text"
+              }
+            ]
+          },
+          {
+            "name": "returns"
+          }
+        ],
         "x-nestia-method": "POST"
       }
     }
@@ -331,14 +615,52 @@
         "type": "object",
         "properties": {
           "page": {
+            "description": "@minimum 0",
+            "x-typia-metaTags": [
+              {
+                "kind": "minimum",
+                "value": 0
+              }
+            ],
+            "x-typia-jsDocTags": [
+              {
+                "name": "minimum",
+                "text": [
+                  {
+                    "text": "0",
+                    "kind": "text"
+                  }
+                ]
+              }
+            ],
             "x-typia-required": false,
             "x-typia-optional": true,
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "limit": {
+            "description": "@minimum 0",
+            "x-typia-metaTags": [
+              {
+                "kind": "minimum",
+                "value": 0
+              }
+            ],
+            "x-typia-jsDocTags": [
+              {
+                "name": "minimum",
+                "text": [
+                  {
+                    "text": "0",
+                    "kind": "text"
+                  }
+                ]
+              }
+            ],
             "x-typia-required": false,
             "x-typia-optional": true,
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "order": {
             "x-typia-required": false,

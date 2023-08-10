@@ -11,6 +11,16 @@ import { DeletePostCommand } from './delete-post-command';
 @Controller('post')
 export class DeletePostController {
   constructor(private readonly commandBus: CommandBus) {}
+  /**
+   * 게시글 삭제 기능
+   *
+   * postId 를 통해 특정 게시물을 삭제한다.
+   *
+   * @tag post
+   * @param userId
+   * @param postId
+   * @returns
+   */
   @UseGuards(AccessTokenGuard)
   @TypedRoute.Delete('/:postId')
   async update(

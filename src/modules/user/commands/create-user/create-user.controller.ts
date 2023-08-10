@@ -9,7 +9,16 @@ import { UserAlreadyExistsError } from '../../domain/user.errors';
 @Controller('user')
 export class CreateUserController {
   constructor(private readonly commandBus: CommandBus) {}
-  @TypedRoute.Post('create')
+  /**
+   * 사용자 회원가입 기능
+   *
+   * Body 를 통해 받은 createUserProps( email , password )를 통해 User 를 만든다.
+   *
+   * @tag user
+   * @param createUserProps
+   * @returns
+   */
+  @TypedRoute.Post('register')
   async create(@TypedBody() createUserProps: CreateUserProps): Promise<string> {
     const command = new CreateUserCommand(createUserProps);
     const result: Result<string, UserAlreadyExistsError> =

@@ -13,10 +13,11 @@ const config: INestiaConfig = {
         },
         servers: [
             {
-                url: "http://localhost:8000",
+                url: "http://localhost:8000",   
                 description: "Local Server"
             }
         ],
+        decompose:true
     }
 };
 export default config;

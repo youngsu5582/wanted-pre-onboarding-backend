@@ -10,6 +10,16 @@ import { AccessTokenGuard } from '@src/providers/guards/accessToken.guard';
 @Controller('post')
 export class CreatePostController {
   constructor(private readonly commandBus: CommandBus) {}
+  /**
+   * 게시글 작성 기능
+   *
+   * Body 를 통해 받은 createPostProps( title , content )를 통해 Post를 만든다.
+   *
+   * @tag post
+   * @param createPostProps
+   * @param userId
+   * @returns
+   */
   @UseGuards(AccessTokenGuard)
   @TypedRoute.Post('create')
   async create(
