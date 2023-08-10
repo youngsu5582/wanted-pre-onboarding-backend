@@ -52,4 +52,8 @@ export class PostRepository
       await this.post.findFirst({ where: { id: postId, userId } }),
     );
   }
+  async deletePost(postId: string) {
+    await this.post.delete({ where: { id: postId } });
+    return;
+  }
 }

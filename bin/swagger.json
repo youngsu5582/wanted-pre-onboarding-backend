@@ -50,6 +50,78 @@
       }
     },
     "/post/{postId}": {
+      "delete": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "x-nestia-namespace": "post.update",
+        "x-nestia-jsDocTags": [],
+        "x-nestia-method": "DELETE"
+      },
+      "put": {
+        "tags": [],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "description": "",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePostProps"
+              }
+            }
+          },
+          "required": true,
+          "x-nestia-encrypted": false
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "x-nestia-encrypted": false
+          }
+        },
+        "x-nestia-namespace": "post.update",
+        "x-nestia-jsDocTags": [],
+        "x-nestia-method": "PUT"
+      },
       "get": {
         "tags": [],
         "parameters": [

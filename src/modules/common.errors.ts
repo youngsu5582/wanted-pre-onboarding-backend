@@ -23,3 +23,11 @@ export class DBUpdateError extends ExceptionBase {
     super(DBUpdateError.message, cause, metadata);
   }
 }
+
+export class DBDeleteError extends ExceptionBase {
+  static readonly message = 'DB Delete Error!';
+  public readonly code = 'DATABASE.DELETE_ERROR';
+  constructor(cause?: Error, metadata?: unknown) {
+    super(DBDeleteError.message, cause, metadata);
+  }
+}

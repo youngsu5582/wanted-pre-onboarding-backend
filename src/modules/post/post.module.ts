@@ -11,16 +11,20 @@ import { ReadPostQueryHandler } from './queries/read-post/read-post.service';
 import { ReadPostController } from './queries/read-post/read-post.controller';
 import { UpdatePostController } from './commands/update-post/update-post.controller';
 import { UpdatePostCommandHandler } from './commands/update-post/update-post.service';
+import { DeletePostController } from './commands/delete-post/delete-post.controller';
+import { DeletePostCommandHandler } from './commands/delete-post/delete-post.service';
 
 const httpControllers = [
   CreatePostController,
   ReadPostsController,
   ReadPostController,
   UpdatePostController,
+  DeletePostController,
 ];
 const commandHandlers: Provider[] = [
   CreatePostCommandHandler,
   UpdatePostCommandHandler,
+  DeletePostCommandHandler,
 ];
 const queryHandlers: Provider[] = [ReadPostsQueryHandler, ReadPostQueryHandler];
 const repositories: Provider[] = [

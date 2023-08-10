@@ -19,10 +19,10 @@ https://github.com/lordmyshepherd-edu/wanted-pre-onboardung-backend-selection-as
 
 
 ## API Requirements
-- [ ] 사용자 회원가입
-- [ ] 사용자 로그인
-- [ ] 새로운 게시글 생성
-- [ ] 게시글 목록 조회
-- [ ] 특정 게시글 조회
-- [ ] 특정 게시글 수정
-- [ ] 특정 게시글 삭제
+- [ x ] 사용자 회원가입
+- [ x ] 사용자 로그인
+- [ x ] 새로운 게시글 생성
+- [ x ] 게시글 목록 조회
+- [ x ] 특정 게시글 조회
+- [ x ] 특정 게시글 수정
+- [ x ] 특정 게시글 삭제

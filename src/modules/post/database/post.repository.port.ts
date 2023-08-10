@@ -11,4 +11,5 @@ export default interface PostRepositoryPort {
   readPost: (postId: string) => Promise<PostProps | null>;
   updatePost: (postId: string, entity: PostEntity) => Promise<void>;
   matchAuthorAndUser: (postId: string, userId: string) => Promise<boolean>;
+  deletePost: (postId: string) => Promise<void>;
 }
