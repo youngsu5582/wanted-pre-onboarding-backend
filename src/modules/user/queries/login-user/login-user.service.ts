@@ -8,8 +8,8 @@ import {
   UserPasswordNotCorrectError,
 } from '../../domain/user.errors';
 import { comparePassword } from '@src/utils/compare-password';
-import { Err, Ok } from 'oxide.ts';
-import { DBSelectError } from '@src/modules/common.errors';
+import { Err, Ok, Result } from 'oxide.ts';
+import { DBInsertError, DBSelectError } from '@src/modules/common.errors';
 import { JwtPayloadType, JwtProvider } from '@src/providers/jwt.provider';
 
 @QueryHandler(LoginUserQuery)
@@ -19,7 +19,7 @@ export class LoginUserQueryHandler implements IQueryHandler {
     private readonly userRepository: UserRepository,
     private readonly jwtProvider: JwtProvider,
   ) {}
-  async execute(query: LoginUserQuery): Promise<any> {
+  async execute(query: LoginUserQuery): Promise<Result<string,UserNotExistsError|UserPasswordNotCorrectError>> {
     const record = await this.userRepository.findByEmail(query.email);
     if (!record) return Err(new UserNotExistsError());
     if (!comparePassword(query.password, record.password))

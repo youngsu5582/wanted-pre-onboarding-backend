@@ -1,9 +1,9 @@
 import { INestiaConfig } from "@nestia/sdk";
  
 const config: INestiaConfig = {
-    input: "src/**.controller.ts",
+    input: "src/**/**.controller.ts",
     swagger: {
-        output: "dist/swagger.json",
+        output: "bin/swagger.json",
         security: {
             bearer: {
                 type: "apiKey",

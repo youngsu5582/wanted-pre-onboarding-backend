@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
-import { Err, Ok } from 'oxide.ts';
+import { Err, Ok, Result } from 'oxide.ts';
 import { DBInsertError } from '@src/modules/common.errors';
 import { CreatePostCommand } from './create-post-command';
 import { POST_REPOSITORY } from '../../post.di-token';
@@ -13,7 +13,7 @@ export class CreatePostCommandHandler implements ICommandHandler {
     @Inject(POST_REPOSITORY)
     private readonly postRepository: PostRepositoryPort,
   ) {}
-  async execute(command: CreatePostCommand) {
+  async execute(command: CreatePostCommand) :Promise<Result<string,Error>>{
     const { content, title, userId } = command;
     const post = PostEntity.create({ title, content, userId });
     try {

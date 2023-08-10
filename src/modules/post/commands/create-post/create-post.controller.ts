@@ -15,7 +15,7 @@ export class CreatePostController {
   async create(
     @TypedBody() createPostProps: CreatePostProps,
     @UserId() userId: string,
-  ) {
+  ) : Promise<string> {
     const command = new CreatePostCommand({ ...createPostProps, userId });
     const result: Result<string, undefined> = await this.commandBus.execute(
       command,

@@ -4,6 +4,7 @@ import { EventEmitter } from 'events';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './src/app.module';
 import { Logger } from '@nestjs/common';
+import { initSwagger } from '@src/configs/swagger/swagger';
 
 export class NestBootStrapApplication extends EventEmitter {
   private static INSTANCE: NestBootStrapApplication;
@@ -34,8 +35,8 @@ export class NestBootStrapApplication extends EventEmitter {
       AppModule,
       {},
     );
-    
     this.initMiddleware(this._application);
+    initSwagger(this._application);
     await this._application.listen(NestBootStrapApplication.PORT);
   }
   /**

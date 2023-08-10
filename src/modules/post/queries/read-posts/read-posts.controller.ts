@@ -11,7 +11,7 @@ import { ReadPostProps } from '../../domain/post.types';
 export class ReadPostsController {
   constructor(private readonly queryBus: QueryBus) {}
   @TypedRoute.Get('')
-  async read(@TypedQuery() queryParams: PostPaginationDto) {
+  async read(@TypedQuery() queryParams: PostPaginationDto) : Promise<Paginated<ReadPostProps>> {
     const query = new ReadPostsQuery({
       page: queryParams.page,
       limit: queryParams.limit,
