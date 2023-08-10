@@ -13,7 +13,7 @@ import { Result, match } from 'oxide.ts';
 export class LoginUserController {
   constructor(private readonly queryBus: QueryBus) {}
   @TypedRoute.Post('login')
-  async login(@TypedBody() loginUserProps: LoginUserProps) : Promise<string> {
+  async login(@TypedBody() loginUserProps: LoginUserProps): Promise<string> {
     const query = new LoginUserQuery(loginUserProps);
     const result: Result<
       string,

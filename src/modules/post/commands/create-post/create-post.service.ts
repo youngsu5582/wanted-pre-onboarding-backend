@@ -13,7 +13,7 @@ export class CreatePostCommandHandler implements ICommandHandler {
     @Inject(POST_REPOSITORY)
     private readonly postRepository: PostRepositoryPort,
   ) {}
-  async execute(command: CreatePostCommand) :Promise<Result<string,Error>>{
+  async execute(command: CreatePostCommand): Promise<Result<string, Error>> {
     const { content, title, userId } = command;
     const post = PostEntity.create({ title, content, userId });
     try {

@@ -15,7 +15,9 @@ export class ReadPostsQueryHandler implements IQueryHandler {
     private readonly postRepository: PostRepositoryPort,
     private readonly jwtProvider: JwtProvider,
   ) {}
-  async execute(query: ReadPostsQuery): Promise<Result<Paginated<ReadPostProps>,Error>> {
+  async execute(
+    query: ReadPostsQuery,
+  ): Promise<Result<Paginated<ReadPostProps>, Error>> {
     try {
       const record = await this.postRepository.readPosts({ ...query });
       return Ok(record);

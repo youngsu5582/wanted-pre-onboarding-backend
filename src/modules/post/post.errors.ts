@@ -8,3 +8,10 @@ export class PostNotExistsError extends ExceptionBase {
     super(PostNotExistsError.message, cause, metadata);
   }
 }
+export class PostNotMatchedUser extends ExceptionBase {
+  static readonly message = 'Post is Not Matched Current User';
+  public readonly code = 'POST.NOT_MATCH_USER';
+  constructor(cause?: Error, metadata?: unknown) {
+    super(PostNotMatchedUser.message, cause, metadata);
+  }
+}

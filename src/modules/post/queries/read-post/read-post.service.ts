@@ -15,10 +15,10 @@ export class ReadPostQueryHandler implements IQueryHandler {
     private readonly postRepository: PostRepositoryPort,
     private readonly jwtProvider: JwtProvider,
   ) {}
-  async execute(query: ReadPostQuery): Promise<Result<PostProps,Error>> {
+  async execute(query: ReadPostQuery): Promise<Result<PostProps, Error>> {
     try {
       const record = await this.postRepository.readPost(query.postId);
-      if(!record) return Err(new PostNotExistsError())
+      if (!record) return Err(new PostNotExistsError());
       return Ok(record);
     } catch (err) {
       throw err;

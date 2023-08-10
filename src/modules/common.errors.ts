@@ -15,3 +15,11 @@ export class DBSelectError extends ExceptionBase {
     super(DBSelectError.message, cause, metadata);
   }
 }
+
+export class DBUpdateError extends ExceptionBase {
+  static readonly message = 'DB Update Error!';
+  public readonly code = 'DATABASE.UPDATE_ERROR';
+  constructor(cause?: Error, metadata?: unknown) {
+    super(DBUpdateError.message, cause, metadata);
+  }
+}

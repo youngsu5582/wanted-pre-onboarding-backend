@@ -10,7 +10,7 @@ import { UserAlreadyExistsError } from '../../domain/user.errors';
 export class CreateUserController {
   constructor(private readonly commandBus: CommandBus) {}
   @TypedRoute.Post('create')
-  async create(@TypedBody() createUserProps: CreateUserProps) : Promise<string> {
+  async create(@TypedBody() createUserProps: CreateUserProps): Promise<string> {
     const command = new CreateUserCommand(createUserProps);
     const result: Result<string, UserAlreadyExistsError> =
       await this.commandBus.execute(command);

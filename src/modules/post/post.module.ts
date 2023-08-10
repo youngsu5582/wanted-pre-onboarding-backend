@@ -9,13 +9,19 @@ import { ReadPostsController } from './queries/read-posts/read-posts.controller'
 import { ReadPostsQueryHandler } from './queries/read-posts/read-posts.service';
 import { ReadPostQueryHandler } from './queries/read-post/read-post.service';
 import { ReadPostController } from './queries/read-post/read-post.controller';
+import { UpdatePostController } from './commands/update-post/update-post.controller';
+import { UpdatePostCommandHandler } from './commands/update-post/update-post.service';
 
 const httpControllers = [
   CreatePostController,
   ReadPostsController,
   ReadPostController,
+  UpdatePostController,
 ];
-const commandHandlers: Provider[] = [CreatePostCommandHandler];
+const commandHandlers: Provider[] = [
+  CreatePostCommandHandler,
+  UpdatePostCommandHandler,
+];
 const queryHandlers: Provider[] = [ReadPostsQueryHandler, ReadPostQueryHandler];
 const repositories: Provider[] = [
   { provide: POST_REPOSITORY, useClass: PostRepository },

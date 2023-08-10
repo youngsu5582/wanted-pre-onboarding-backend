@@ -16,7 +16,9 @@ export class CreateUserCommandHandler implements ICommandHandler {
     @Inject(USER_REPOSITORY)
     private readonly userRepository: UserRepositoryPort,
   ) {}
-  async execute(command: CreateUserCommand) : Promise<Result<string,UserAlreadyExistsError>> {
+  async execute(
+    command: CreateUserCommand,
+  ): Promise<Result<string, UserAlreadyExistsError>> {
     const user = UserEntity.create({
       email: command.email,
       password: hashPassword(command.password),

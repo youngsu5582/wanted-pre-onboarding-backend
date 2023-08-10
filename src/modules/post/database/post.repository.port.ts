@@ -9,4 +9,6 @@ export default interface PostRepositoryPort {
     params?: PaginatedQueryParams,
   ) => Promise<Paginated<ReadPostProps>>;
   readPost: (postId: string) => Promise<PostProps | null>;
+  updatePost: (postId: string, entity: PostEntity) => Promise<void>;
+  matchAuthorAndUser: (postId: string, userId: string) => Promise<boolean>;
 }

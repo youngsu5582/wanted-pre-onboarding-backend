@@ -39,4 +39,17 @@ export class PostRepository
       where: { id: postId },
     });
   }
+  async updatePost(postId: string, entity: PostEntity) {
+    const props = entity.getProps();
+    await this.post.update({
+      where: { id: postId },
+      data: { ...props, updatedAt: entity.updatedAt },
+    });
+    return;
+  }
+  async matchAuthorAndUser(postId: string, userId: string) {
+    return Boolean(
+      await this.post.findFirst({ where: { id: postId, userId } }),
+    );
+  }
 }

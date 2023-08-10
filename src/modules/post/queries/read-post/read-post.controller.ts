@@ -12,19 +12,20 @@ import { ResponseBase } from '@src/libs/api/response.base';
 export class ReadPostController {
   constructor(private readonly queryBus: QueryBus) {}
   @TypedRoute.Get('/:postId')
-  async read(@PostId() postId: string) : Promise<ResponseBase<PostProps>> {
+  async read(@PostId() postId: string): Promise<ResponseBase<PostProps>> {
     const query = new ReadPostQuery({ id: postId });
 
-    const result: Result<PostProps, PostNotExistsError> = await this.queryBus.execute(query);
-    
-    return match(result,{
-      Ok:(post : PostProps)=>{
+    const result: Result<PostProps, PostNotExistsError> =
+      await this.queryBus.execute(query);
+
+    return match(result, {
+      Ok: (post: PostProps) => {
         const response = new ResponseBase(post);
         return response;
       },
-      Err:(error : PostNotExistsError)=>{
+      Err: (error: PostNotExistsError) => {
         throw error;
-      }
-    })
+      },
+    });
   }
 }
