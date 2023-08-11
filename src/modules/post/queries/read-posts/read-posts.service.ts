@@ -20,8 +20,10 @@ export class ReadPostsQueryHandler implements IQueryHandler {
   ): Promise<Result<Paginated<ReadPostProps>, Error>> {
     try {
       const record = await this.postRepository.readPosts({ ...query });
+      console.log(record);
       return Ok(record);
     } catch (err) {
+      console.log(err);
       throw err;
     }
   }

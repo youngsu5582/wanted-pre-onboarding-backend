@@ -41,6 +41,7 @@ export class ReadPostsController {
         param: queryParams.order ? queryParams.order : 'desc',
       },
     });
+
     const result: Result<
       Paginated<ReadPostProps>,
       Error

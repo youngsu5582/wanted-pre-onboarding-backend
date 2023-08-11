@@ -17,7 +17,6 @@ prisma/migrations/**/*.*
 
 # Prisma Database
 
-
 # IDE - VSCode
 .vscode/*
 

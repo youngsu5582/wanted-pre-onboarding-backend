@@ -10,7 +10,7 @@ export class NestBootStrapApplication extends EventEmitter {
   private static INSTANCE: NestBootStrapApplication;
   private static PORT = process.env.PORT || 8000;
   private static LOGGER: Logger = new Logger(NestBootStrapApplication.name);
-  private static readonly CORS_WHITELIST = `http://localhost:${this.PORT}`; // Dev 단계 LIST
+  private static readonly CORS_WHITELIST = `http://localhost:3000`; // Dev 단계 LIST
   private static readonly PRODUCTION_HOST = ''; // Production 단계 HOST
   private _application: NestExpressApplication;
 

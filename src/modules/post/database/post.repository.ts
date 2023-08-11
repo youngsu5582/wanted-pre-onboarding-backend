@@ -21,7 +21,7 @@ export class PostRepository
   }
   async readPosts(params: PaginatedQueryParams) {
     const record = await this.post.findMany({
-      select: { id: true },
+      select: { id: true , title : true,user:{select:{email:true}} },
       take: params.limit,
       skip: params.offset,
       orderBy: { createdAt: params.orderBy.param },
