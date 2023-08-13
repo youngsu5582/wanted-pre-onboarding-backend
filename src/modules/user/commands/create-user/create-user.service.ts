@@ -22,6 +22,7 @@ export class CreateUserCommandHandler implements ICommandHandler {
     const user = UserEntity.create({
       email: command.email,
       password: hashPassword(command.password),
+      nickname: command.nickname,
     });
     try {
       await this.userRepository.createUser(user);

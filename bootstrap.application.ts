@@ -59,7 +59,7 @@ export class NestBootStrapApplication extends EventEmitter {
    */
   private useCors(app: NestExpressApplication) {
     const whitelist = this.isDevelopment()
-      ? NestBootStrapApplication.CORS_WHITELIST
+      ? [NestBootStrapApplication.CORS_WHITELIST,'http://localhost:8000']
       : [...NestBootStrapApplication.PRODUCTION_HOST];
     app.enableCors({
       origin: (origin, callback) => {

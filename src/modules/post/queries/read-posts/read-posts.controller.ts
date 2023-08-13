@@ -4,7 +4,7 @@ import { QueryBus } from '@nestjs/cqrs';
 import { ReadPostsQuery } from './read-posts-query';
 import { Result } from 'oxide.ts';
 import { Paginated } from '@src/libs/ddd/repository.port';
-import { ReadPostProps } from '../../domain/post.types';
+import { PostsResult } from '../../domain/post.types';
 class PostPaginationDto {
   /**
    * @minimum 0
@@ -32,7 +32,7 @@ export class ReadPostsController {
   @TypedRoute.Get('/')
   async reads(
     @TypedQuery() queryParams: PostPaginationDto,
-  ): Promise<Paginated<ReadPostProps>> {
+  ): Promise<Paginated<PostsResult>> {
     const query = new ReadPostsQuery({
       page: queryParams.page,
       limit: queryParams.limit,
@@ -43,7 +43,7 @@ export class ReadPostsController {
     });
 
     const result: Result<
-      Paginated<ReadPostProps>,
+      Paginated<PostsResult>,
       Error
     > = await this.queryBus.execute(query);
     const paginated = result.unwrap();

@@ -5,11 +5,13 @@ export class UpdatePostCommand extends Command {
   readonly content: string;
   readonly userId: string;
   readonly postId: string;
+  readonly imageUrl: string;
   constructor(props: CommandProps<UpdatePostCommand>) {
     super(props);
     this.title = props.title;
     this.content = props.content;
     this.userId = props.userId;
     this.postId = props.postId;
+    this.imageUrl = props.imageUrl;
   }
 }

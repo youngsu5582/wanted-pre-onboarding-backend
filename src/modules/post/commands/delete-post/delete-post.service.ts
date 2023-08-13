@@ -16,8 +16,13 @@ export class DeletePostCommandHandler implements ICommandHandler {
     private readonly postRepository: PostRepositoryPort,
   ) {}
   async execute(command: UpdatePostCommand): Promise<Result<string, Error>> {
-    const { content, title, userId, postId } = command;
-    const post = PostEntity.update(postId, { title, content, userId });
+    const { content, title, userId, postId, imageUrl } = command;
+    const post = PostEntity.update(postId, {
+      title,
+      content,
+      userId,
+      imageUrl,
+    });
     try {
       const isMatched = this.postRepository.matchAuthorAndUser(postId, userId);
       if (!isMatched) return Err(new PostNotMatchedUser());

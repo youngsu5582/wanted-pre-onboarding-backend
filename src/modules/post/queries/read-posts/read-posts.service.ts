@@ -6,7 +6,7 @@ import { ReadPostsQuery } from './read-posts-query';
 import { POST_REPOSITORY } from '../../post.di-token';
 import PostRepositoryPort from '../../database/post.repository.port';
 import { Paginated } from '@src/libs/ddd/repository.port';
-import { ReadPostProps } from '../../domain/post.types';
+import { PostsResult } from '../../domain/post.types';
 
 @QueryHandler(ReadPostsQuery)
 export class ReadPostsQueryHandler implements IQueryHandler {
@@ -17,13 +17,11 @@ export class ReadPostsQueryHandler implements IQueryHandler {
   ) {}
   async execute(
     query: ReadPostsQuery,
-  ): Promise<Result<Paginated<ReadPostProps>, Error>> {
+  ): Promise<Result<Paginated<PostsResult>, Error>> {
     try {
       const record = await this.postRepository.readPosts({ ...query });
-      console.log(record);
       return Ok(record);
     } catch (err) {
-      console.log(err);
       throw err;
     }
   }

@@ -14,8 +14,8 @@ export class CreatePostCommandHandler implements ICommandHandler {
     private readonly postRepository: PostRepositoryPort,
   ) {}
   async execute(command: CreatePostCommand): Promise<Result<string, Error>> {
-    const { content, title, userId } = command;
-    const post = PostEntity.create({ title, content, userId });
+    const { content, title, userId, imageUrl } = command;
+    const post = PostEntity.create({ title, content, userId, imageUrl });
     try {
       await this.postRepository.createPost(post);
       return Ok(post.id);
