@@ -24,7 +24,10 @@ export class DeletePostCommandHandler implements ICommandHandler {
       imageUrl,
     });
     try {
-      const isMatched = this.postRepository.matchAuthorAndUser(postId, userId);
+      const isMatched = await this.postRepository.matchAuthorAndUser(
+        postId,
+        userId,
+      );
       if (!isMatched) return Err(new PostNotMatchedUser());
       await this.postRepository.deletePost(postId);
       return Ok(post.id);

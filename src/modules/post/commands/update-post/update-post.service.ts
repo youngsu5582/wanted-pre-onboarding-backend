@@ -23,7 +23,10 @@ export class UpdatePostCommandHandler implements ICommandHandler {
       imageUrl,
     });
     try {
-      const isMatched = this.postRepository.matchAuthorAndUser(postId, userId);
+      const isMatched = await this.postRepository.matchAuthorAndUser(
+        postId,
+        userId,
+      );
       if (!isMatched) return Err(new PostNotMatchedUser());
       await this.postRepository.updatePost(postId, post);
       return Ok(post.id);

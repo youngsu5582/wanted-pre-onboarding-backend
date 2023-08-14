@@ -14,6 +14,9 @@ export type PostResultWithNull =
     })
   | null;
 
-export type PostsResult = Pick<Post, 'id' | 'title'> & {
+export type PostsResult = Pick<
+  Post,
+  'id' | 'title' | 'imageUrl' | 'createdAt'
+> & {
   user: Pick<User, 'nickname'>;
 };
