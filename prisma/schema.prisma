@@ -25,9 +25,7 @@ model User {
 
 model Post {
   id      String @id @default(uuid())
-  ///@pattern ^\s*$
   title   String
-  ///@pattern ^\s*$
   content String
 
   imageUrl String

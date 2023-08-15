@@ -27,7 +27,6 @@ export class CreatePostController {
     @UserId() userId: string,
   ): Promise<string> {
     const command = new CreatePostCommand({ ...createPostProps, userId });
-
     const result: Result<string, undefined> = await this.commandBus.execute(
       command,
     );

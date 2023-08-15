@@ -40,7 +40,6 @@ export class UpdatePostController {
     return match(result, {
       Ok: (id: string) => id,
       Err: (error: PostNotMatchedUser) => {
-        console.log(error);
         throw error;
       },
     });
