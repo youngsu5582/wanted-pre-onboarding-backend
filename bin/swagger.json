@@ -39,7 +39,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ResponseBase_lt___type_gt_"
                 }
               }
             },
@@ -169,7 +169,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Paginated_lt_ReadPostProps_gt_"
+                  "$ref": "#/components/schemas/Paginated_lt_PostsResult_gt_"
                 }
               }
             },
@@ -227,7 +227,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ResponseBase_lt___type_gt_.o1"
                 }
               }
             },
@@ -304,7 +304,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ResponseBase_lt___type_gt_.o2"
                 }
               }
             },
@@ -438,7 +438,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ResponseBase_lt___type_gt_.o3"
                 }
               }
             },
@@ -498,7 +498,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ResponseBase_lt___type_gt_.o4"
                 }
               }
             },
@@ -561,6 +561,122 @@
           "title",
           "content",
           "imageUrl"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "ResponseBase_lt___type_gt_": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
+          },
+          "message": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/__type"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "status",
+          "data"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "__type": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "id"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "ResponseBase_lt___type_gt_.o1": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
+          },
+          "message": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/__type.o1"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "status",
+          "data"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "__type.o1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "x-typia-required": true,
+            "x-typia-optional": false
+          }
+        },
+        "nullable": false,
+        "required": [
+          "id"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "ResponseBase_lt___type_gt_.o2": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
+          },
+          "message": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/__type.o2"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "status",
+          "data"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "__type.o2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "id"
         ],
         "x-typia-jsDocTags": []
       },
@@ -685,7 +801,7 @@
         "nullable": false,
         "x-typia-jsDocTags": []
       },
-      "Paginated_lt_ReadPostProps_gt_": {
+      "Paginated_lt_PostsResult_gt_": {
         "type": "object",
         "properties": {
           "count": {
@@ -708,7 +824,7 @@
             "x-typia-optional": false,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ReadPostProps"
+              "$ref": "#/components/schemas/PostsResult"
             }
           }
         },
@@ -721,10 +837,48 @@
         ],
         "x-typia-jsDocTags": []
       },
-      "ReadPostProps": {
+      "PostsResult": {
         "type": "object",
         "properties": {
           "id": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "title": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "imageUrl": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          },
+          "createdAt": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/Pick_lt_GetResult_lt__blt__space_id:_space_string;_space_email:_space_string;_space_password:_space_string;_space_nickname:_space_string;_space_createdAt:_space_Date;_space_updatedAt:_space_Date;_space_refreshToken:_space_string_space__or__space_null;_space__bgt__comma__space_unknown_gt__space__and__space__blt__bgt__comma__space__doublequote_nickname_doublequote__gt_"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "id",
+          "title",
+          "imageUrl",
+          "createdAt",
+          "user"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "Pick_lt_GetResult_lt__blt__space_id:_space_string;_space_email:_space_string;_space_password:_space_string;_space_nickname:_space_string;_space_createdAt:_space_Date;_space_updatedAt:_space_Date;_space_refreshToken:_space_string_space__or__space_null;_space__bgt__comma__space_unknown_gt__space__and__space__blt__bgt__comma__space__doublequote_nickname_doublequote__gt_": {
+        "type": "object",
+        "properties": {
+          "nickname": {
             "x-typia-required": true,
             "x-typia-optional": false,
             "type": "string"
@@ -732,7 +886,7 @@
         },
         "nullable": false,
         "required": [
-          "id"
+          "nickname"
         ],
         "x-typia-jsDocTags": []
       },
@@ -763,6 +917,45 @@
         ],
         "x-typia-jsDocTags": []
       },
+      "ResponseBase_lt___type_gt_.o3": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
+          },
+          "message": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/__type.o3"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "status",
+          "data"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "__type.o3": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "id"
+        ],
+        "x-typia-jsDocTags": []
+      },
       "LoginUserProps": {
         "type": "object",
         "properties": {
@@ -781,6 +974,45 @@
         "required": [
           "email",
           "password"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "ResponseBase_lt___type_gt_.o4": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "boolean"
+          },
+          "message": {
+            "x-typia-required": false,
+            "x-typia-optional": true,
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/__type.o4"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "status",
+          "data"
+        ],
+        "x-typia-jsDocTags": []
+      },
+      "__type.o4": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "x-typia-required": true,
+            "x-typia-optional": false,
+            "type": "string"
+          }
+        },
+        "nullable": false,
+        "required": [
+          "accessToken"
         ],
         "x-typia-jsDocTags": []
       }

@@ -6,6 +6,7 @@ import { CreatePostProps } from '../../domain/post.types';
 import { CreatePostCommand } from './create-post-command';
 import { UserId } from '@src/decorators/user-id.decorator';
 import { AccessTokenGuard } from '@src/providers/guards/accessToken.guard';
+import { ResponseBase } from '@src/libs/api/response.base';
 
 @Controller('post')
 export class CreatePostController {
@@ -25,13 +26,13 @@ export class CreatePostController {
   async create(
     @TypedBody() createPostProps: CreatePostProps,
     @UserId() userId: string,
-  ): Promise<string> {
+  ): Promise<ResponseBase<{id:string}>> {
     const command = new CreatePostCommand({ ...createPostProps, userId });
     const result: Result<string, undefined> = await this.commandBus.execute(
       command,
     );
     return match(result, {
-      Ok: (id: string) => id,
+      Ok: (id: string) => new ResponseBase({id}),
     });
   }
 }

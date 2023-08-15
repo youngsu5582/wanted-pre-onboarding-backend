@@ -19,12 +19,17 @@ https://github.com/lordmyshepherd-edu/wanted-pre-onboardung-backend-selection-as
 
 
 ## API Requirements
-- [ x ] 사용자 회원가입
-- [ x ] 사용자 로그인
-- [ x ] 새로운 게시글 생성
-- [ x ] 게시글 목록 조회
-- [ x ] 특정 게시글 조회
-- [ x ] 특정 게시글 수정
-- [ x ] 특정 게시글 삭제
+- [ o ] 사용자 회원가입
+- [ o ] 사용자 로그인
+- [ o ] 새로운 게시글 생성
+- [ o ] 게시글 목록 조회
+- [ o ] 특정 게시글 조회
+- [ o ] 특정 게시글 수정
+- [ o ] 특정 게시글 삭제
+
+## Database Base ERD
+
+![ERD Image](<wanted-pre-onboarding-backend - User.png>)
+
 
 => 2023.08.10 프로토타입 완성

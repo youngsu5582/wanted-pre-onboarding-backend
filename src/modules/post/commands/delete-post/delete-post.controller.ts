@@ -7,6 +7,7 @@ import { AccessTokenGuard } from '@src/providers/guards/accessToken.guard';
 import { PostId } from '@src/decorators/post-id.decorator';
 import { PostNotMatchedUser } from '../../post.errors';
 import { DeletePostCommand } from './delete-post-command';
+import { ResponseBase } from '@src/libs/api/response.base';
 
 @Controller('post')
 export class DeletePostController {
@@ -26,7 +27,7 @@ export class DeletePostController {
   async update(
     @UserId() userId: string,
     @PostId() postId: string,
-  ): Promise<string> {
+  ): Promise<ResponseBase<{id}>> {
     const command = new DeletePostCommand({
       userId,
       postId,
@@ -34,7 +35,7 @@ export class DeletePostController {
     const result: Result<string, PostNotMatchedUser> =
       await this.commandBus.execute(command);
     return match(result, {
-      Ok: (id: string) => id,
+      Ok: (id: string) => new ResponseBase({id}),
       Err: (error: PostNotMatchedUser) => {
         throw error;
       },

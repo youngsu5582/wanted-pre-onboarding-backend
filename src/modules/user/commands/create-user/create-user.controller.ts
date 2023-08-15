@@ -5,6 +5,7 @@ import { CreateUserCommand } from './create-user-command';
 import { CreateUserProps } from '../../domain/user.types';
 import { Result, match } from 'oxide.ts';
 import { UserAlreadyExistsError } from '../../domain/user.errors';
+import { ResponseBase } from '@src/libs/api/response.base';
 
 @Controller('user')
 export class CreateUserController {
@@ -19,12 +20,12 @@ export class CreateUserController {
    * @returns
    */
   @TypedRoute.Post('register')
-  async create(@TypedBody() createUserProps: CreateUserProps): Promise<string> {
+  async create(@TypedBody() createUserProps: CreateUserProps): Promise<ResponseBase<{id:string}>> {
     const command = new CreateUserCommand(createUserProps);
     const result: Result<string, UserAlreadyExistsError> =
       await this.commandBus.execute(command);
     return match(result, {
-      Ok: (id: string) => id,
+      Ok: (id: string) => new ResponseBase({id}),
       Err: (error: UserAlreadyExistsError) => {
         throw error;
       },

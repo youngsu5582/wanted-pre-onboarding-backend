@@ -8,6 +8,7 @@ import { UserId } from '@src/decorators/user-id.decorator';
 import { AccessTokenGuard } from '@src/providers/guards/accessToken.guard';
 import { PostId } from '@src/decorators/post-id.decorator';
 import { PostNotMatchedUser } from '../../post.errors';
+import { ResponseBase } from '@src/libs/api/response.base';
 
 @Controller('post')
 export class UpdatePostController {
@@ -29,7 +30,7 @@ export class UpdatePostController {
     @TypedBody() updatePostProps: UpdatePostProps,
     @UserId() userId: string,
     @PostId() postId: string,
-  ): Promise<string> {
+  ): Promise<ResponseBase<{id:string}>> {
     const command = new UpdatePostCommand({
       ...updatePostProps,
       userId,
@@ -38,7 +39,7 @@ export class UpdatePostController {
     const result: Result<string, PostNotMatchedUser> =
       await this.commandBus.execute(command);
     return match(result, {
-      Ok: (id: string) => id,
+      Ok: (id: string) => new ResponseBase({id}),
       Err: (error: PostNotMatchedUser) => {
         throw error;
       },

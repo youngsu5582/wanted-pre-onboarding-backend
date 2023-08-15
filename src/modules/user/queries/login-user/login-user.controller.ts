@@ -8,6 +8,7 @@ import {
   UserPasswordNotCorrectError,
 } from '../../domain/user.errors';
 import { Result, match } from 'oxide.ts';
+import { ResponseBase } from '@src/libs/api/response.base';
 
 @Controller('user')
 export class LoginUserController {
@@ -22,14 +23,14 @@ export class LoginUserController {
    * @returns
    */
   @TypedRoute.Post('login')
-  async login(@TypedBody() loginUserProps: LoginUserProps): Promise<string> {
+  async login(@TypedBody() loginUserProps: LoginUserProps): Promise<ResponseBase<{accessToken:string}>> {
     const query = new LoginUserQuery(loginUserProps);
     const result: Result<
       string,
       UserNotExistsError | UserPasswordNotCorrectError
     > = await this.queryBus.execute(query);
     return match(result, {
-      Ok: (accessToken: string) => accessToken,
+      Ok: (accessToken: string) => new ResponseBase({accessToken}),
       Err: (error: UserNotExistsError | UserPasswordNotCorrectError) => {
         throw error;
       },
