@@ -30,7 +30,7 @@ export class LoginUserController {
       UserNotExistsError | UserPasswordNotCorrectError
     > = await this.queryBus.execute(query);
     return match(result, {
-      Ok: (accessToken: string) => new ResponseBase({accessToken}),
+      Ok: (accessToken: string) => new ResponseBase( {accessToken}),
       Err: (error: UserNotExistsError | UserPasswordNotCorrectError) => {
         throw error;
       },

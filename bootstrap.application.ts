@@ -11,7 +11,7 @@ export class NestBootStrapApplication extends EventEmitter {
   private static PORT = process.env.PORT || 8000;
   private static LOGGER: Logger = new Logger(NestBootStrapApplication.name);
   private static readonly CORS_WHITELIST = `http://localhost:3000`; // Dev 단계 LIST
-  private static readonly PRODUCTION_HOST = ''; // Production 단계 HOST
+  private static readonly PRODUCTION_HOST = process.env.serverUrl; // Production 단계 HOST
   private _application: NestExpressApplication;
 
   private constructor() {
@@ -60,7 +60,7 @@ export class NestBootStrapApplication extends EventEmitter {
   private useCors(app: NestExpressApplication) {
     const whitelist = this.isDevelopment()
       ? [NestBootStrapApplication.CORS_WHITELIST,'http://localhost:8000']
-      : [...NestBootStrapApplication.PRODUCTION_HOST];
+      : [NestBootStrapApplication.PRODUCTION_HOST];
     app.enableCors({
       origin: (origin, callback) => {
         if (!origin || whitelist.indexOf(origin) !== -1) callback(null, true);
@@ -85,6 +85,7 @@ export class NestBootStrapApplication extends EventEmitter {
    * @returns boolean
    */
   private isDevelopment() {
+    console.log(process.env.NODE_ENV);
     if (!process.env.NODE_ENV) return true;
     return process.env.NODE_ENV === 'development';
   }

@@ -14,7 +14,8 @@ prisma/migrations/**/*.*
 
 # Env
 .env
-.development.env
+.env.development
+.database.env
 
 # Prisma Database
 

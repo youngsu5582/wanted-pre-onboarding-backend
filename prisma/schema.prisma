@@ -28,7 +28,7 @@ model Post {
   title   String
   content String
 
-  imageUrl String
+  imageUrl  String
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())

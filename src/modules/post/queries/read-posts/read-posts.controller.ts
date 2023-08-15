@@ -5,6 +5,7 @@ import { ReadPostsQuery } from './read-posts-query';
 import { Result } from 'oxide.ts';
 import { Paginated } from '@src/libs/ddd/repository.port';
 import { PostsResult } from '../../domain/post.types';
+import { ResponseBase } from '@src/libs/api/response.base';
 class PostPaginationDto {
   /**
    * @minimum 0
@@ -32,7 +33,7 @@ export class ReadPostsController {
   @TypedRoute.Get('/')
   async reads(
     @TypedQuery() queryParams: PostPaginationDto,
-  ): Promise<Paginated<PostsResult>> {
+  ): Promise<ResponseBase<Paginated<PostsResult>>> {
     const query = new ReadPostsQuery({
       page: queryParams.page,
       limit: queryParams.limit,
@@ -47,8 +48,6 @@ export class ReadPostsController {
       Error
     > = await this.queryBus.execute(query);
     const paginated = result.unwrap();
-    return {
-      ...paginated,
-    };
+    return new ResponseBase(paginated)
   }
 }
