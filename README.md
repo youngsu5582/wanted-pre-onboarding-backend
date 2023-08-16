@@ -38,15 +38,15 @@ https://www.notion.so/ea9c581cf4ff4b2fb953316a6cafef8c?pvs=4
 ### Backend
 1. git clone https://github.com/youngsu5582/wanted-pre-onboarding-backend.git
 2. npm install
-3. npx prisma migrate dev
+3. npx prisma migrate dev  
     3.1 .env 에 DATABASE_URL 를 넣어야 함. (.env.test 참조)
 4. npx nestia swagger (swagger.json 생성)
 5. npm run start
 
 ### Backend & Database in Docker
-0. env 세팅
-    0.1 .env.development 에 DATABASE_URL를 넣어야 함. (.env.test 참조)
-    0.2 .database.env 에 정보를 넣어야 함. (.database.test.env)
+0. env 세팅  
+    0.1 .env.development 에 DATABASE_URL를 넣어야 함. (.env.test 참조)  
+    0.2 .database.env 에 정보를 넣어야 함. (.database.test.env 참조)  
 1. docker-compose build
 2. docker-compose up
 

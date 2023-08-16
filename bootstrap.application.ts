@@ -5,13 +5,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './src/app.module';
 import { Logger } from '@nestjs/common';
 import { initSwagger } from '@src/configs/swagger/swagger';
-
 export class NestBootStrapApplication extends EventEmitter {
   private static INSTANCE: NestBootStrapApplication;
   private static PORT = process.env.PORT || 8000;
   private static LOGGER: Logger = new Logger(NestBootStrapApplication.name);
   private static readonly CORS_WHITELIST = `http://localhost:3000`; // Dev 단계 LIST
-  private static readonly PRODUCTION_HOST = process.env.serverUrl; // Production 단계 HOST
+  private static readonly PRODUCTION_HOST = process.env.SERVER_URL; // Production 단계 HOST
   private _application: NestExpressApplication;
 
   private constructor() {
@@ -62,7 +61,7 @@ export class NestBootStrapApplication extends EventEmitter {
       ? [NestBootStrapApplication.CORS_WHITELIST,'http://localhost:8000']
       : [NestBootStrapApplication.PRODUCTION_HOST];
     app.enableCors({
-      origin: (origin, callback) => {
+      origin: this.isDevelopment()? '*' : (origin, callback) => {
         if (!origin || whitelist.indexOf(origin) !== -1) callback(null, true);
         else callback(new Error('Not Allowed by CORS'));
       },

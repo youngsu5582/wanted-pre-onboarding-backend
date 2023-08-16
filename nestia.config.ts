@@ -1,5 +1,6 @@
 import { INestiaConfig } from "@nestia/sdk";
  
+
 const config: INestiaConfig = {
     input: "src/**/**.controller.ts",
     swagger: {
@@ -13,7 +14,7 @@ const config: INestiaConfig = {
         },
         servers: [
             {
-                url: "http://localhost:8000",   
+                url: process.env.SERVER_URL? process.env.SERVER_URL : "http://localhost:8000",   
                 description: "Local Server"
             }
         ],
